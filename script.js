@@ -224,7 +224,9 @@ if (productModal && typeof productModal.showModal === 'function') {
       // Show the already-loaded card preview instantly, then swap in the sharp full flyer once it arrives.
       const full = img.dataset.src;
       img.removeAttribute('data-src');
-      img.src = card.querySelector('.deal-card__image img')?.currentSrc || full;
+      const preview = card.querySelector('.deal-card__image img');
+      if (preview) preview.loading = 'eager';
+      img.src = preview?.currentSrc || preview?.src || full;
       if (full && !img.src.endsWith(full)) {
         const hiRes = new Image();
         hiRes.decoding = 'async';
