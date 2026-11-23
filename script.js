@@ -51,6 +51,11 @@ function preselectProduct(item) {
   if (!hireSelect || !item) return;
   const match = [...hireSelect.options].find((o) => o.value === item || o.textContent.trim() === item);
   hireSelect.value = match?.value ?? 'Something else / not sure yet';
+  // Briefly highlight the field so customers see their selection was added.
+  hireSelect.classList.remove('is-selected');
+  void hireSelect.offsetWidth;
+  hireSelect.classList.add('is-selected');
+  setTimeout(() => hireSelect.classList.remove('is-selected'), 2600);
 }
 
 // "Order & pay" on a package remembers the package so the order form is prefilled.
@@ -78,8 +83,10 @@ document.querySelectorAll('.enquire-link, .choose-deal').forEach((link) => {
   link.addEventListener('click', () => {
     preselectProduct(link.dataset.item);
     if (link.matches('button')) {
-      document.getElementById('contact')?.scrollIntoView({
+      // Land on the "Interested in" field itself so customers see their selection.
+      (hireSelect || document.getElementById('contact'))?.scrollIntoView({
         behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth',
+        block: 'center',
       });
     }
   });
