@@ -11,6 +11,8 @@
  *  - best-effort per-IP rate limit (pair with a Vercel Firewall rate-limit rule)
  *  - strict field allow-list, length caps, control-character stripping, HTML escaping
  */
+import { buildHtml, buildSubject, buildText } from './_email-template.js';
+
 const TO_EMAIL = 'melbourne@epicpartyhire.com.au';
 const emailRegex = /^[A-Za-z0-9._%+'-]{1,64}@[A-Za-z0-9.-]{1,190}\.[A-Za-z]{2,24}$/;
 const MIN_FILL_MS = 3000;
@@ -26,9 +28,6 @@ const tidy = (value, max = 500, multiline = false) => {
   out = multiline ? out.replace(/\r\n?/g, '\n') : out.replace(/[\r\n\t]+/g, ' ');
   return out.trim().slice(0, max);
 };
-const escapeHtml = (value) => String(value).replace(/[&<>"']/g, (char) => ({
-  '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;',
-}[char]));
 
 // Best-effort in-memory limiter: resets when the function instance is recycled.
 const hits = new Map();
@@ -112,11 +111,10 @@ export default async function handler(req, res) {
   if (!apiKey || !from) {
     return res.status(503).json({ ok: false, error: 'Email service not configured.' });
   }
-  const rows = Object.entries(fields).map(([key, value]) =>
-    `<tr><th style="text-align:left;padding:9px;border-bottom:1px solid #ddd">${escapeHtml(key)}</th>` +
-    `<td style="padding:9px;border-bottom:1px solid #ddd;white-space:pre-wrap">${escapeHtml(value || 'Not supplied')}</td></tr>`,
-  ).join('');
-  const text = Object.entries(fields).map(([key, value]) => `${key}: ${value || 'Not supplied'}`).join('\n');
+  // Logo is served from this same deployment; the host was already checked by sameOrigin().
+  const siteUrl = `https://${req.headers['x-forwarded-host'] || req.headers.host}`;
+  const html = buildHtml(fields, { logoUrl: `${siteUrl}/assets/email/logo-email.jpg`, siteUrl });
+  const text = buildText(fields);
   try {
     const upstream = await fetch('https://api.resend.com/emails', {
       method: 'POST',
@@ -125,8 +123,8 @@ export default async function handler(req, res) {
         from,
         to: [TO_EMAIL],
         reply_to: fields.email,
-        subject: `EPIC Party Hire enquiry — ${fields.item || 'New event'}`,
-        html: `<div style="font-family:Arial,sans-serif"><h2>New EPIC Party Hire enquiry</h2><table>${rows}</table><p>Submission is an enquiry, not a booking confirmation. Never change bank details or send money based on a website enquiry.</p></div>`,
+        subject: buildSubject(fields),
+        html,
         text,
       }),
       signal: AbortSignal.timeout(10000),
