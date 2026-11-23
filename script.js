@@ -89,6 +89,9 @@ const errorBox = document.getElementById('form-error');
 const statusBox = document.getElementById('form-status');
 const submitButton = form?.querySelector('button[type="submit"]');
 
+// Time the form was shown; the server rejects submissions completed implausibly fast (bots).
+const formStartedAt = Date.now();
+
 const getValue = (name) => form?.elements.namedItem(name)?.value?.trim() ?? '';
 
 function setStatus(message, isError = false, fallbackHref = null) {
@@ -139,6 +142,7 @@ form?.addEventListener('submit', async (event) => {
     notes: getValue('notes'),
     website: getValue('website'), // spam trap; should stay blank
   };
+  const payload = { ...details, startedAt: formStartedAt };
 
   if (errorBox) errorBox.hidden = true;
   if (statusBox) statusBox.hidden = true;
@@ -158,7 +162,7 @@ form?.addEventListener('submit', async (event) => {
     const response = await fetch('/api/enquiry', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(details),
+      body: JSON.stringify(payload),
       signal: AbortSignal.timeout(12000),
     });
     if (!response.ok) throw new Error('Email delivery is not configured or is temporarily unavailable.');

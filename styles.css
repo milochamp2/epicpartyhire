@@ -691,3 +691,4 @@ h2{font-size:clamp(40px,10.2vw,55px)}
 .bank-card{padding:20px}.bank-details dd{font-size:16px}
 }
 @media(max-width:470px){.deal-card__actions{grid-template-columns:1fr}}
+.text-link{color:var(--cyan);text-decoration:underline;text-underline-offset:3px}
