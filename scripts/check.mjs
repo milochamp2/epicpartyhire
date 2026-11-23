@@ -6,7 +6,7 @@ let problems = 0;
 for (const match of html.matchAll(/<(img|script|link)[^>]*(?:src|href)="([^"]+)"[^>]*>/g)) {
   const target = match[2];
   if (target.startsWith('http') || target.startsWith('#') || target.startsWith('mailto:') || target.startsWith('tel:')) continue;
-  if (!existsSync(resolve(root, target.split('?')[0]))) { console.error('Missing:', target); problems++; }
+  if (!existsSync(resolve(root, target.split('?')[0].replace(/^\//, '')))) { console.error('Missing:', target); problems++; }
 }
 const photos = [...html.matchAll(/<img[^>]+>/g)];
 for (const [tag] of photos) if (!/alt="[^"]*"/.test(tag)) { console.error('Image missing alt:', tag.slice(0, 70)); problems++; }

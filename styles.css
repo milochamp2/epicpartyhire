@@ -787,3 +787,8 @@ html.modal-open{overflow:hidden}
   .product-modal__close{position:fixed;top:max(12px,env(safe-area-inset-top));right:12px}
 }
 @media (prefers-reduced-motion:reduce){.product-modal[open]{animation:none}}
+
+/* Footer: "Get in touch" sits under the logo + description (left column) */
+.footer__top{grid-template-columns:2fr 1fr}
+.footer__contact{margin-top:22px}
+@media (max-width:900px){.footer__top{grid-template-columns:1fr 1fr}}
