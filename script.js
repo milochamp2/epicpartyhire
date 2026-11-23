@@ -192,3 +192,66 @@ if (date) {
   const localDate = new Date(now.getTime() - now.getTimezoneOffset() * 60_000).toISOString().slice(0, 10);
   date.min = localDate;
 }
+
+// Product prices rail arrows (any button with data-rail / data-dir).
+document.querySelectorAll('[data-rail]').forEach((button) => {
+  button.addEventListener('click', () => {
+    const track = document.getElementById(button.dataset.rail);
+    const card = track?.querySelector('.deal-card');
+    if (!track || !card) return;
+    const gap = parseFloat(getComputedStyle(track).columnGap) || 22;
+    track.scrollBy({
+      left: (card.getBoundingClientRect().width + gap) * Number(button.dataset.dir || 1),
+      behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth',
+    });
+  });
+});
+
+// Product pop-up: big flyer + prices + inclusions. Full-size flyer only loads when opened.
+const productModal = document.getElementById('product-modal');
+if (productModal && typeof productModal.showModal === 'function') {
+  const media = productModal.querySelector('.product-modal__media');
+  const content = productModal.querySelector('.product-modal__content');
+  const enquire = productModal.querySelector('.product-modal__enquire');
+  let lastTrigger = null;
+
+  const openProduct = (card, trigger) => {
+    const more = card.querySelector('.product-card__more');
+    if (!more) return;
+    const clone = more.cloneNode(true);
+    const img = clone.querySelector('img');
+    if (img) {
+      img.src = img.dataset.src;
+      img.removeAttribute('data-src');
+      img.decoding = 'async';
+    }
+    enquire.dataset.item = clone.querySelector('.product-modal__item')?.dataset.item || '';
+    const title = clone.querySelector('h3');
+    if (title) title.id = 'product-modal-title';
+    media.replaceChildren(...(img ? [img] : []));
+    content.replaceChildren(...[...clone.childNodes].filter((n) => n !== img));
+    lastTrigger = trigger;
+    productModal.showModal();
+    document.documentElement.classList.add('modal-open');
+    productModal.querySelector('.product-modal__inner').scrollTop = 0;
+  };
+
+  document.querySelectorAll('.product-card').forEach((card) => {
+    card.querySelectorAll('.product-card__open, .product-card__details-btn').forEach((btn) => {
+      btn.addEventListener('click', () => openProduct(card, btn));
+    });
+  });
+
+  const closeProduct = () => productModal.close();
+  productModal.querySelector('.product-modal__close')?.addEventListener('click', closeProduct);
+  // Tap outside the panel closes it.
+  productModal.addEventListener('click', (e) => { if (e.target === productModal) closeProduct(); });
+  productModal.addEventListener('close', () => {
+    document.documentElement.classList.remove('modal-open');
+    lastTrigger?.focus({ preventScroll: true });
+  });
+  enquire.addEventListener('click', () => {
+    preselectProduct(enquire.dataset.item);
+    closeProduct();
+  });
+}
