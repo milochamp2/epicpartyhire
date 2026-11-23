@@ -53,6 +53,26 @@ function preselectProduct(item) {
   hireSelect.value = match?.value ?? 'Something else / not sure yet';
 }
 
+// "Order & pay" on a package remembers the package so the order form is prefilled.
+document.querySelectorAll('.order-link').forEach((link) => {
+  link.addEventListener('click', () => preselectProduct(link.dataset.item));
+});
+
+// Copy bank transfer details to the clipboard.
+document.querySelectorAll('.copy-button').forEach((button) => {
+  button.addEventListener('click', async () => {
+    const value = button.parentElement?.querySelector('.bank-value')?.textContent?.trim();
+    if (!value) return;
+    try {
+      await navigator.clipboard.writeText(value);
+      button.textContent = 'COPIED';
+    } catch {
+      button.textContent = 'COPY FAILED';
+    }
+    setTimeout(() => { button.textContent = 'COPY'; }, 1800);
+  });
+});
+
 document.querySelectorAll('.enquire-link, .choose-deal').forEach((link) => {
   link.addEventListener('click', () => {
     preselectProduct(link.dataset.item);

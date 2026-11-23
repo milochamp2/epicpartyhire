@@ -650,3 +650,44 @@ h2{font-size:clamp(40px,10.2vw,55px)}
 .form-shell button[disabled]{opacity:.65;cursor:wait;transform:none}
 .privacy-section{min-height:65vh;padding:90px 0}.privacy-section h1{font-size:clamp(42px,6vw,75px);font-family:Impact,'Arial Black',sans-serif;line-height:1.05}.privacy-section h2{font-size:24px;color:var(--cyan);font-family:inherit;font-style:normal;margin-top:35px}.privacy-section p,.privacy-section li{max-width:770px;line-height:1.85;color:#bdcadd}
 @media(max-width:780px){.steps-grid{grid-template-columns:1fr;gap:14px}.step-card{padding:22px 24px}.step-card__number{font-size:52px}.step-card h3{margin-top:14px;font-size:24px}}
+
+/* ===== Call / email / order & pay additions ===== */
+.button--call{background:linear-gradient(110deg,#00c2ff 0%,#04e4f7 100%);color:#03121d;box-shadow:0 8px 30px rgba(0,210,255,.3)}
+.button--call span{font-size:17px}
+.header-cta.button--call{gap:9px}
+.hero__seo{display:block;font-family:Inter,Arial,sans-serif;font-style:normal;font-size:clamp(13px,1.3vw,16px);letter-spacing:.22em;text-transform:uppercase;color:var(--cyan);margin-bottom:14px;font-weight:900}
+.contact-methods a.contact-methods__primary{border-color:var(--cyan);background:#00daff12}
+.deal-card__actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:auto}
+.deal-card__actions .deal-card__button{margin-top:0}
+.deal-card__button--pay{border-color:#ff2b87aa;color:#fff;background:linear-gradient(110deg,#ff264e33,#ff2a9133)}
+.deal-card__button--pay:hover{background:linear-gradient(110deg,#ff264e,#ff2a91)}
+.order-section{background:radial-gradient(ellipse at 100% 0%,rgba(255,43,135,.16),transparent 55%),#090d1a;border-top:1px solid #1f344f}
+.order-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start}
+.order-copy h2 em{color:var(--hot)}
+.order-copy>p{font-size:17px;color:#c4d0e0;line-height:1.8}
+.order-steps{list-style:none;padding:0;margin:28px 0 32px;display:grid;gap:14px}
+.order-steps li{display:flex;gap:16px;align-items:flex-start;color:#c4d0e0;line-height:1.7}
+.order-steps b{flex:0 0 38px;height:38px;display:grid;place-items:center;border-radius:11px;background:linear-gradient(135deg,#ff264e,#ff2a91);color:#fff;font-size:17px}
+.order-steps strong{color:#fff}
+.order-steps a,.bank-card__note a,.faq-list a{color:var(--cyan);text-decoration:underline;text-underline-offset:3px}
+.bank-card{border:1px solid #ff2b8766;border-radius:23px;background:linear-gradient(145deg,rgba(60,22,58,.55),rgba(12,16,31,.9));padding:29px;box-shadow:0 25px 75px #0008,0 0 35px #ff2b8718;backdrop-filter:blur(20px)}
+.bank-details{margin:22px 0 0;display:grid;gap:10px}
+.bank-details>div{border:1px solid #34415a;border-radius:12px;background:#0c1321;padding:13px 15px}
+.bank-details dt{font-size:10px;letter-spacing:.16em;font-weight:900;color:var(--cyan)}
+.bank-details dd{margin:4px 0 0;display:flex;justify-content:space-between;align-items:center;gap:12px;font-size:19px;font-weight:800;color:#fff}
+.bank-details dd small{display:block;font-size:12px;font-weight:500;color:#94a5bf}
+.copy-button{border:1px solid #1ae7ff99;background:transparent;color:var(--cyan);border-radius:8px;font-size:10px;font-weight:900;letter-spacing:.1em;padding:7px 10px}
+.copy-button:hover{background:#08527f;color:#fff}
+.bank-card__note{font-size:12px;color:#94a5bf;margin:18px 0 0;line-height:1.7}
+.seo-blurb{margin-top:30px;padding-top:24px;border-top:1px solid #243148}
+.seo-blurb h3{font-size:16px;letter-spacing:.06em;color:#fff;margin:0 0 10px}
+.seo-blurb p{font-size:14px!important;line-height:1.8}
+@media(max-width:900px){.order-grid{grid-template-columns:1fr;gap:36px}}
+@media(max-width:690px){
+.mobile-quote{display:flex;gap:0;padding:0;overflow:hidden;background:none;border:0;box-shadow:0 8px 30px #000c,0 0 28px #ff147966;width:calc(100% - 30px);max-width:420px}
+.mobile-quote a{flex:1;display:flex;align-items:center;justify-content:center;gap:9px;padding:14px 10px;color:#fff;background:linear-gradient(105deg,#fc2868,#fd2fa8)}
+.mobile-quote a.mobile-quote__call{background:linear-gradient(105deg,#00b4f0,#04e4f7);color:#03121d}
+.mobile-quote a:first-child{border-radius:99px 0 0 99px}.mobile-quote a:last-child{border-radius:0 99px 99px 0}
+.bank-card{padding:20px}.bank-details dd{font-size:16px}
+}
+@media(max-width:470px){.deal-card__actions{grid-template-columns:1fr}}
