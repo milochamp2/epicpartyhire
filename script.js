@@ -40,7 +40,7 @@ for (const [id, direction] of [['prev-package', -1], ['next-package', 1]]) {
     const card = rail?.querySelector('.deal-card');
     if (!rail || !card) return;
     rail.scrollBy({
-      left: (card.getBoundingClientRect().width + (parseFloat(getComputedStyle(rail).columnGap) || 20)) * direction,
+      left: (card.getBoundingClientRect().width + 22) * direction,
       behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth',
     });
   });
@@ -66,11 +66,11 @@ document.querySelectorAll('.copy-button').forEach((button) => {
     if (!value) return;
     try {
       await navigator.clipboard.writeText(value);
-      button.textContent = 'Copied';
+      button.textContent = 'COPIED';
     } catch {
-      button.textContent = 'Copy failed';
+      button.textContent = 'COPY FAILED';
     }
-    setTimeout(() => { button.textContent = 'Copy'; }, 1800);
+    setTimeout(() => { button.textContent = 'COPY'; }, 1800);
   });
 });
 
@@ -104,7 +104,7 @@ function setStatus(message, isError = false, fallbackHref = null) {
     statusBox.append(document.createTextNode(' '));
     const link = document.createElement('a');
     link.href = fallbackHref;
-    link.textContent = 'Open my email app instead';
+    link.textContent = 'Open my email app instead ↗';
     statusBox.append(link);
   }
 }
@@ -156,7 +156,7 @@ form?.addEventListener('submit', async (event) => {
 
   if (submitButton) {
     submitButton.disabled = true;
-    submitButton.textContent = 'Sending enquiry…';
+    submitButton.firstChild.textContent = 'SENDING ENQUIRY ';
   }
 
   try {
@@ -178,7 +178,7 @@ form?.addEventListener('submit', async (event) => {
   } finally {
     if (submitButton) {
       submitButton.disabled = false;
-      submitButton.textContent = 'Send enquiry';
+      submitButton.firstChild.textContent = 'SEND EVENT ENQUIRY ';
     }
   }
 });
