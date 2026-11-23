@@ -792,3 +792,15 @@ html.modal-open{overflow:hidden}
 .footer__top{grid-template-columns:2fr 1fr}
 .footer__contact{margin-top:22px}
 @media (max-width:900px){.footer__top{grid-template-columns:1fr 1fr}}
+
+/* Card CTAs: View details (primary) + Call to book */
+.deal-card__button--primary{background:linear-gradient(110deg,#ff264e,#ff2a91);border-color:transparent;color:#fff;box-shadow:0 6px 18px rgba(255,40,120,.3)}
+.deal-card__button--primary:hover{filter:brightness(1.1);background:linear-gradient(110deg,#ff264e,#ff2a91)}
+.deal-card__button--call{justify-content:center;border-color:#1ae7ff99;color:var(--cyan);text-decoration:none}
+.deal-card__button--call:hover{background:var(--cyan);color:#03121d}
+.category-card--clickable{cursor:pointer}
+.category-card--clickable .round-link{cursor:pointer;font:inherit}
+.product-modal__pay{flex:1 1 100%;text-align:center;font-size:13px;color:#aeb9d0;text-decoration:underline;text-underline-offset:3px;padding-top:4px}
+.product-modal__pay:hover{color:var(--cyan)}
+.product-modal__prices th small{display:block;font-weight:400;color:#8f9ab0;font-size:12px;margin-top:2px}
+.button .product-modal__book-label{font-size:inherit;font-weight:inherit;line-height:inherit}

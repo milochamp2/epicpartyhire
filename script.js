@@ -234,7 +234,10 @@ if (productModal && typeof productModal.showModal === 'function') {
         hiRes.src = full;
       }
     }
-    enquire.dataset.item = clone.querySelector('.product-modal__item')?.dataset.item || '';
+    const meta = clone.querySelector('.product-modal__item');
+    enquire.dataset.item = meta?.dataset.item || '';
+    const label = productModal.querySelector('.product-modal__book-label');
+    if (label) label.textContent = meta?.dataset.kind === 'package' ? 'BOOK THIS PACKAGE' : 'BOOK THIS ITEM';
     const title = clone.querySelector('h3');
     if (title) title.id = 'product-modal-title';
     media.replaceChildren(...(img ? [img] : []));
@@ -251,6 +254,18 @@ if (productModal && typeof productModal.showModal === 'function') {
     });
   });
 
+  const openById = (id, trigger) => {
+    const card = document.querySelector(`.product-card[data-product="${id}"]`);
+    if (card) openProduct(card, trigger);
+  };
+  document.querySelectorAll('[data-open]').forEach((btn) => {
+    btn.addEventListener('click', () => openById(btn.dataset.open, btn));
+  });
+  document.querySelectorAll('.category-card--clickable').forEach((tile) => {
+    const btn = tile.querySelector('[data-open]');
+    tile.addEventListener('click', (e) => { if (btn && !e.target.closest('button,a')) openById(btn.dataset.open, btn); });
+  });
+
   const closeProduct = () => productModal.close();
   productModal.querySelector('.product-modal__close')?.addEventListener('click', closeProduct);
   // Tap outside the panel closes it.
@@ -258,6 +273,10 @@ if (productModal && typeof productModal.showModal === 'function') {
   productModal.addEventListener('close', () => {
     document.documentElement.classList.remove('modal-open');
     lastTrigger?.focus({ preventScroll: true });
+  });
+  productModal.querySelector('.product-modal__pay')?.addEventListener('click', () => {
+    preselectProduct(enquire.dataset.item);
+    closeProduct();
   });
   enquire.addEventListener('click', () => {
     preselectProduct(enquire.dataset.item);
