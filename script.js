@@ -221,9 +221,16 @@ if (productModal && typeof productModal.showModal === 'function') {
     const clone = more.cloneNode(true);
     const img = clone.querySelector('img');
     if (img) {
-      img.src = img.dataset.src;
+      // Show the already-loaded card preview instantly, then swap in the sharp full flyer once it arrives.
+      const full = img.dataset.src;
       img.removeAttribute('data-src');
-      img.decoding = 'async';
+      img.src = card.querySelector('.deal-card__image img')?.currentSrc || full;
+      if (full && !img.src.endsWith(full)) {
+        const hiRes = new Image();
+        hiRes.decoding = 'async';
+        hiRes.onload = () => { if (img.isConnected) img.src = full; };
+        hiRes.src = full;
+      }
     }
     enquire.dataset.item = clone.querySelector('.product-modal__item')?.dataset.item || '';
     const title = clone.querySelector('h3');
