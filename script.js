@@ -40,7 +40,7 @@ for (const [id, direction] of [['prev-package', -1], ['next-package', 1]]) {
     const card = rail?.querySelector('.deal-card');
     if (!rail || !card) return;
     rail.scrollBy({
-      left: (card.getBoundingClientRect().width + 22) * direction,
+      left: (card.getBoundingClientRect().width + (parseFloat(getComputedStyle(rail).columnGap) || 20)) * direction,
       behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth',
     });
   });
@@ -61,15 +61,16 @@ document.querySelectorAll('.order-link').forEach((link) => {
 // Copy bank transfer details to the clipboard.
 document.querySelectorAll('.copy-button').forEach((button) => {
   button.addEventListener('click', async () => {
-    const value = button.parentElement?.querySelector('.bank-value')?.textContent?.trim();
+    const field = button.parentElement?.querySelector('.bank-value');
+    const value = (field?.dataset.copy || field?.textContent || '').trim();
     if (!value) return;
     try {
       await navigator.clipboard.writeText(value);
-      button.textContent = 'COPIED';
+      button.textContent = 'Copied';
     } catch {
-      button.textContent = 'COPY FAILED';
+      button.textContent = 'Copy failed';
     }
-    setTimeout(() => { button.textContent = 'COPY'; }, 1800);
+    setTimeout(() => { button.textContent = 'Copy'; }, 1800);
   });
 });
 
@@ -103,7 +104,7 @@ function setStatus(message, isError = false, fallbackHref = null) {
     statusBox.append(document.createTextNode(' '));
     const link = document.createElement('a');
     link.href = fallbackHref;
-    link.textContent = 'Open my email app instead ↗';
+    link.textContent = 'Open my email app instead';
     statusBox.append(link);
   }
 }
@@ -155,7 +156,7 @@ form?.addEventListener('submit', async (event) => {
 
   if (submitButton) {
     submitButton.disabled = true;
-    submitButton.firstChild.textContent = 'SENDING ENQUIRY ';
+    submitButton.textContent = 'Sending enquiry…';
   }
 
   try {
@@ -177,7 +178,7 @@ form?.addEventListener('submit', async (event) => {
   } finally {
     if (submitButton) {
       submitButton.disabled = false;
-      submitButton.firstChild.textContent = 'SEND EVENT ENQUIRY ';
+      submitButton.textContent = 'Send enquiry';
     }
   }
 });
