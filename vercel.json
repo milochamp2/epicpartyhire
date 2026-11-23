@@ -84,5 +84,112 @@
       "maxDuration": 15,
       "memory": 128
     }
-  }
+  },
+  "redirects": [
+    {
+      "source": "/about-epic-party-hire",
+      "destination": "/#about",
+      "permanent": true
+    },
+    {
+      "source": "/contact-us",
+      "destination": "/#contact",
+      "permanent": true
+    },
+    {
+      "source": "/packages",
+      "destination": "/#packages",
+      "permanent": true
+    },
+    {
+      "source": "/our-products",
+      "destination": "/#hire",
+      "permanent": true
+    },
+    {
+      "source": "/slushie-machines-hire",
+      "destination": "/#hire",
+      "permanent": true
+    },
+    {
+      "source": "/popcorn-machines-hire",
+      "destination": "/#hire",
+      "permanent": true
+    },
+    {
+      "source": "/outdoor-cinema",
+      "destination": "/#hire",
+      "permanent": true
+    },
+    {
+      "source": "/neon-led-numbers",
+      "destination": "/#hire",
+      "permanent": true
+    },
+    {
+      "source": "/neon-led-signs",
+      "destination": "/#hire",
+      "permanent": true
+    },
+    {
+      "source": "/fairy-floss-machine-hire",
+      "destination": "/#extras",
+      "permanent": true
+    },
+    {
+      "source": "/arcade-game-hire",
+      "destination": "/#extras",
+      "permanent": true
+    },
+    {
+      "source": "/jukebox-hire-melbourne",
+      "destination": "/#extras",
+      "permanent": true
+    },
+    {
+      "source": "/patio-heaters",
+      "destination": "/#extras",
+      "permanent": true
+    },
+    {
+      "source": "/instagram-printer",
+      "destination": "/#extras",
+      "permanent": true
+    },
+    {
+      "source": "/chocolate-fountain",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/wine-barrel-hire",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/gallery",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/thank-you",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/element_category/:path*",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/wp-admin/:path*",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/wp-login.php",
+      "destination": "/",
+      "permanent": true
+    }
+  ]
 }
