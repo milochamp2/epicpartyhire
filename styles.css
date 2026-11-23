@@ -743,3 +743,6 @@ h2{font-size:clamp(40px,10.2vw,55px)}
   .footer{padding-bottom:110px}
   .mobile-quote{bottom:max(12px,env(safe-area-inset-bottom))}
 }
+
+/* New EPIC wordmark logo: keep it flush left inside the logo box */
+.logo img,.footer__brand img{object-position:left center}
