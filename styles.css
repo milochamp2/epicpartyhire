@@ -692,3 +692,21 @@ h2{font-size:clamp(40px,10.2vw,55px)}
 }
 @media(max-width:470px){.deal-card__actions{grid-template-columns:1fr}}
 .text-link{color:var(--cyan);text-decoration:underline;text-underline-offset:3px}
+/* Crew phone numbers */
+.owner-names a{display:flex;flex-direction:column;gap:3px;border:1px solid #15d3fa85;background:#11c6fc13;border-radius:9px;padding:9px 15px;transition:background .2s,border-color .2s}
+.owner-names a:hover{background:#00daff22;border-color:var(--cyan)}
+.owner-names a span{border:0;background:none;padding:0;color:var(--cyan);font-size:11px;letter-spacing:.15em;font-weight:900}
+.owner-names a b{color:#fff;font-size:15px;letter-spacing:.02em}
+.crew-phones{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.contact-methods .crew-phones a{flex-direction:column;align-items:flex-start;gap:10px;padding:14px}
+.crew-phones strong{font-size:15px!important;white-space:nowrap}
+@media(max-width:1060px) and (min-width:901px){.crew-phones{grid-template-columns:1fr}.contact-methods .crew-phones a{flex-direction:row;align-items:center}}
+@media(max-width:560px){.crew-phones{grid-template-columns:1fr}.contact-methods .crew-phones a{flex-direction:row;align-items:center}.owner-names a{padding:7px 11px}}
+/* Keep the 1800 number visible at the very top on phones */
+@media(max-width:690px){
+.announcement__inner{justify-content:space-between}
+.announcement__links{display:flex}
+.announcement__links>span,.announcement__links .announcement__email{display:none}
+.announcement__links a[href^="tel:"]{color:var(--cyan);font-weight:900;letter-spacing:.06em}
+}
+@media(max-width:380px){.announcement__city{font-size:0}.announcement__city .live-dot{font-size:11px}.announcement__inner{justify-content:center}}
