@@ -804,3 +804,4 @@ html.modal-open{overflow:hidden}
 .product-modal__pay:hover{color:var(--cyan)}
 .product-modal__prices th small{display:block;font-weight:400;color:#8f9ab0;font-size:12px;margin-top:2px}
 .button .product-modal__book-label{font-size:inherit;font-weight:inherit;line-height:inherit}
+.deal-card__actions .deal-card__button{white-space:nowrap;justify-content:center;gap:8px;padding:12px 10px}
