@@ -20,6 +20,19 @@ const BRAND = {
   page: '#f2f3f7',
 };
 
+// Business contact details shown at the bottom of every enquiry email.
+const BUSINESS = {
+  name: 'EPIC Party Hire Melbourne',
+  mainPhone: { label: '1800 463 742', tel: '1800463742' },
+  owners: [
+    { name: 'Cardez', label: '0404 875 801', tel: '+61404875801' },
+    { name: 'Spock', label: '0417 308 645', tel: '+61417308645' },
+    { name: 'Millsy', label: '0468 937 636', tel: '+61468937636' },
+  ],
+  email: 'melbourne@epicpartyhire.com.au',
+  web: 'epicpartyhire.com.au',
+};
+
 export function formatEventDate(iso) {
   if (!/^\d{4}-\d{2}-\d{2}$/.test(iso || '')) return '';
   const [y, m, d] = iso.split('-').map(Number);
@@ -53,6 +66,12 @@ export function buildText(f) {
     f.notes || 'None',
     '',
     '---',
+    BUSINESS.name,
+    `Main line: ${BUSINESS.mainPhone.label}`,
+    ...BUSINESS.owners.map((o) => `${o.name}: ${o.label}`),
+    BUSINESS.email,
+    BUSINESS.web,
+    '',
     'Reply to this email to respond to the customer directly.',
     'Sent from the enquiry form on epicpartyhire.com.au. This is an enquiry, not a confirmed booking.',
   ].join('\n');
@@ -149,6 +168,34 @@ export function buildHtml(f, { logoUrl, siteUrl }) {
             <td style="padding:18px 28px 28px;">
               <p style="margin:0 0 8px;font:600 13px/1.5 Arial,Helvetica,sans-serif;color:${BRAND.muted};">Notes from the customer</p>
               <div style="padding:14px 16px;border-radius:10px;background:#f6f7fa;border-left:4px solid ${BRAND.cyan};font:400 15px/1.6 Arial,Helvetica,sans-serif;color:${BRAND.text};white-space:pre-wrap;">${f.notes ? e(f.notes) : '<span style="color:#a3a9b7;">No notes added.</span>'}</div>
+            </td>
+          </tr>
+
+          <!-- Business details -->
+          <tr>
+            <td style="padding:24px 28px;background:${BRAND.ink};">
+              <p style="margin:0 0 4px;font:800 16px/1.3 Arial,Helvetica,sans-serif;color:#ffffff;">${e(BUSINESS.name)}</p>
+              <p style="margin:0 0 16px;font:400 13px/1.5 Arial,Helvetica,sans-serif;color:#9ba3b4;">Party &amp; event hire across Melbourne</p>
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+                <tr>
+                  <td style="padding:0 0 14px;">
+                    <span style="display:block;font:600 12px/1.4 Arial,Helvetica,sans-serif;color:${BRAND.cyan};">Main line</span>
+                    <a href="tel:${e(BUSINESS.mainPhone.tel)}" style="font:800 20px/1.3 Arial,Helvetica,sans-serif;color:#ffffff;text-decoration:none;">${e(BUSINESS.mainPhone.label)}</a>
+                  </td>
+                </tr>
+              </table>
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+                <tr>${BUSINESS.owners.map((o) => `
+                  <td width="33%" style="padding:0 8px 14px 0;vertical-align:top;">
+                    <span style="display:block;font:600 12px/1.4 Arial,Helvetica,sans-serif;color:${BRAND.cyan};">${e(o.name)}</span>
+                    <a href="tel:${e(o.tel)}" style="font:700 14px/1.4 Arial,Helvetica,sans-serif;color:#ffffff;text-decoration:none;white-space:nowrap;">${e(o.label)}</a>
+                  </td>`).join('')}
+                </tr>
+              </table>
+              <p style="margin:2px 0 0;font:400 13px/1.7 Arial,Helvetica,sans-serif;color:#c9ced8;">
+                <a href="mailto:${e(BUSINESS.email)}" style="color:#c9ced8;text-decoration:none;">${e(BUSINESS.email)}</a><br>
+                <a href="https://${e(BUSINESS.web)}" style="color:#c9ced8;text-decoration:none;">${e(BUSINESS.web)}</a>
+              </p>
             </td>
           </tr>
 
