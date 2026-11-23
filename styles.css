@@ -746,3 +746,5 @@ h2{font-size:clamp(40px,10.2vw,55px)}
 
 /* New EPIC wordmark logo: keep it flush left inside the logo box */
 .logo img,.footer__brand img{object-position:left center}
+/* Transparent cutout logo: no blend mode needed */
+.logo img,.footer__brand img{mix-blend-mode:normal}
