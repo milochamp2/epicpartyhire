@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://epicpartyhire.com.au/sitemap.xml

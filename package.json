@@ -1,0 +1,14 @@
+{
+  "name": "epic-party-hire-melbourne",
+  "private": true,
+  "type": "module",
+  "version": "1.0.0",
+  "description": "EPIC Party Hire Melbourne — premium neon retro party-hire website",
+  "scripts": {
+    "dev": "node scripts/dev.mjs",
+    "build": "node scripts/build.mjs",
+    "check": "node scripts/check.mjs",
+    "start": "node scripts/dev.mjs"
+  },
+  "engines": { "node": ">=20" }
+}
