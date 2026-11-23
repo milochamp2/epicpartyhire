@@ -132,6 +132,9 @@ export default async function handler(req, res) {
       signal: AbortSignal.timeout(10000),
     });
     if (!upstream.ok) {
+      // Log Resend's reason (no customer data) so it shows in Vercel → Logs.
+      const reason = (await upstream.text().catch(() => '')).slice(0, 400);
+      console.error(`Resend rejected email: HTTP ${upstream.status} ${reason}`);
       return res.status(502).json({ ok: false, error: 'Email delivery failed.' });
     }
     return res.status(200).json({ ok: true });
