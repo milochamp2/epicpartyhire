@@ -116,32 +116,32 @@
     },
     {
       "source": "/our-products",
-      "destination": "/#hire",
+      "destination": "/#extras",
       "permanent": true
     },
     {
       "source": "/slushie-machines-hire",
-      "destination": "/#hire",
+      "destination": "/#extras",
       "permanent": true
     },
     {
       "source": "/popcorn-machines-hire",
-      "destination": "/#hire",
+      "destination": "/#extras",
       "permanent": true
     },
     {
       "source": "/outdoor-cinema",
-      "destination": "/#hire",
+      "destination": "/#extras",
       "permanent": true
     },
     {
       "source": "/neon-led-numbers",
-      "destination": "/#hire",
+      "destination": "/#extras",
       "permanent": true
     },
     {
       "source": "/neon-led-signs",
-      "destination": "/#hire",
+      "destination": "/#extras",
       "permanent": true
     },
     {
@@ -181,7 +181,7 @@
     },
     {
       "source": "/gallery",
-      "destination": "/",
+      "destination": "/#gallery",
       "permanent": true
     },
     {
