@@ -290,3 +290,26 @@ if (productModal && typeof productModal.showModal === 'function') {
     closeProduct();
   });
 }
+
+// "Call now" buttons open a chooser with the main line and the three owners.
+// The link still dials 1800 463 742 directly if scripts are unavailable.
+const callModal = document.getElementById('call-modal');
+if (callModal && typeof callModal.showModal === 'function') {
+  let callTrigger = null;
+  document.querySelectorAll('.call-trigger').forEach((link) => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      callTrigger = link;
+      callModal.showModal();
+      document.documentElement.classList.add('modal-open');
+    });
+  });
+  const closeCall = () => callModal.close();
+  callModal.querySelector('.call-modal__close')?.addEventListener('click', closeCall);
+  callModal.addEventListener('click', (e) => { if (e.target === callModal) closeCall(); });
+  callModal.querySelector('.call-modal__alt a')?.addEventListener('click', closeCall);
+  callModal.addEventListener('close', () => {
+    if (!document.getElementById('product-modal')?.open) document.documentElement.classList.remove('modal-open');
+    callTrigger?.focus({ preventScroll: true });
+  });
+}
