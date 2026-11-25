@@ -896,3 +896,6 @@ html.modal-open{overflow:hidden}
 .owner-names__face{flex:none;aspect-ratio:1/1;min-width:0}
 @media(min-width:691px){.owner-names a{grid-template-columns:42px minmax(0,1fr)}}
 @media(min-width:691px) and (max-width:1100px){.owner-names a{grid-template-columns:34px minmax(0,1fr);column-gap:8px;padding:8px}.owner-names__face{width:34px;height:34px}.owner-names a b{font-size:12.5px}.owner-names a span{font-size:10px;letter-spacing:.1em}}
+/* Contact: crew faces instead of phone icons */
+.contact-methods__face{width:48px;height:48px;flex:0 0 48px;aspect-ratio:1/1;border-radius:50%;object-fit:cover;border:2px solid rgba(4,228,247,.55);box-shadow:0 0 14px rgba(4,228,247,.25)}
+@media(max-width:690px){.contact-methods__face{width:42px;height:42px;flex-basis:42px}}
