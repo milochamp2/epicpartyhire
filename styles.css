@@ -702,14 +702,6 @@ h2{font-size:clamp(40px,10.2vw,55px)}
 .crew-phones strong{font-size:15px!important;white-space:nowrap}
 @media(max-width:1060px) and (min-width:901px){.crew-phones{grid-template-columns:1fr}.contact-methods .crew-phones a{flex-direction:row;align-items:center}}
 @media(max-width:560px){.crew-phones{grid-template-columns:1fr}.contact-methods .crew-phones a{flex-direction:row;align-items:center}.owner-names a{padding:7px 11px}}
-/* Keep the 1800 number visible at the very top on phones */
-@media(max-width:690px){
-.announcement__inner{justify-content:space-between}
-.announcement__links{display:flex}
-.announcement__links>span,.announcement__links .announcement__email{display:none}
-.announcement__links a[href^="tel:"]{color:var(--cyan);font-weight:900;letter-spacing:.06em}
-}
-@media(max-width:380px){.announcement__city{font-size:0}.announcement__city .live-dot{font-size:11px}.announcement__inner{justify-content:center}}
 
 /* ===== Mobile-only refinements (phones ≤ 690px). Desktop and tablet are unaffected. ===== */
 @media (max-width:690px){
