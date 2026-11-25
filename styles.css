@@ -899,3 +899,10 @@ html.modal-open{overflow:hidden}
 /* Contact: crew faces instead of phone icons */
 .contact-methods__face{width:48px;height:48px;flex:0 0 48px;aspect-ratio:1/1;border-radius:50%;object-fit:cover;border:2px solid rgba(4,228,247,.55);box-shadow:0 0 14px rgba(4,228,247,.25)}
 @media(max-width:690px){.contact-methods__face{width:42px;height:42px;flex-basis:42px}}
+/* Footer locations */
+.footer__top{grid-template-columns:1.6fr 1fr 1fr}
+.footer__locations a{display:flex;flex-direction:column;gap:3px;margin-bottom:14px}
+.footer__locations strong{color:#fff;font-size:13px}
+.footer__locations span{color:#aeb9d0;font-size:13px;line-height:1.5}
+.footer__locations a:hover span{color:var(--cyan)}
+@media (max-width:900px){.footer__top{grid-template-columns:1fr 1fr}}
