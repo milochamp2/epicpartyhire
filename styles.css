@@ -906,3 +906,6 @@ html.modal-open{overflow:hidden}
 .footer__locations span{color:#aeb9d0;font-size:13px;line-height:1.5}
 .footer__locations a:hover span{color:var(--cyan)}
 @media (max-width:900px){.footer__top{grid-template-columns:1fr 1fr}}
+.footer__locations a{margin-bottom:8px}
+.footer__map{display:block;width:100%;max-width:340px;height:170px;border:1px solid #263448;border-radius:14px;margin:0 0 22px;background:#0b0e1d;filter:saturate(.9)}
+@media (max-width:690px){.footer__locations{grid-column:1/-1}.footer__map{max-width:none;height:190px}}
